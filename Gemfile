@@ -12,7 +12,7 @@ end
 
 gem 'therubyracer'
 
-gem 'sqlite3'
+gem 'sqlite3', :group => [:development, :test]
 
 
 gem 'json'
