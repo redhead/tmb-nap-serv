@@ -9,20 +9,27 @@ class UsersController < ApplicationController
   end
 
   def register
-  	@user = User.new(params[:user])
-  	#respond_to do |format|
-  	#	format.json { render :json => params[:user]}
-  	#end
-  	respond_to do |format|
-      begin 
+  	@user = User.new(params[:user])  	
+   	respond_to do |format|
+      begin       	
       	@user.save!
+      	format.json { render :json => { :response => "User registered", :status => "OK"} }
       rescue ActiveRecord::RecordInvalid => e
-      	if e.message == 'Validation failed: Username has already been taken'
-    		format.json { render :json => { :response => "False"} }
-  		else
-    		format.html { render :json => { :response => "True"} }
-  		end
+      	puts e.message
+      	format.json { render :json => { :response => e.message, :status => "NOT OK"} }
       end
+    end
+  end
+
+  def authenticate
+  	@user = User.find_by_username(params[:user][:username])
+
+  	respond_to do |format|
+    	if @user
+    		format.json { render :json => { :response => "User authenticated", :status => "OK"} }
+    	else
+    		format.json { render :json => { :response => "User not authenticated", :status => "NOT OK"} }
+    	end
     end
   end
 

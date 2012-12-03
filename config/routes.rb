@@ -3,6 +3,7 @@ TmbNapServ::Application.routes.draw do
   root :to => "users#index"
 
   match '/users/register', :controller => 'users', :action => 'register'
+  match '/users/authenticate', :controller => 'users', :action => 'authenticate'
 
   resources :users, :collection => { :register => :get}
 
