@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  state: MyString
+  description: MyText
+  price: 9.99
+  lon: 1
+  lat: 1
+
+two:
+  title: MyString
+  state: MyString
+  description: MyText
+  price: 9.99
+  lon: 1
+  lat: 1
