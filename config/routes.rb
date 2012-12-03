@@ -2,7 +2,10 @@ TmbNapServ::Application.routes.draw do
   
   root :to => "users#index"
 
-  resources :users
+  match '/users/register', :controller => 'users', :action => 'register'
+
+  resources :users, :collection => { :register => :get}
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
