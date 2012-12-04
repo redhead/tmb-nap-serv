@@ -8,9 +8,10 @@ gem 'rails', '3.2.8'
 group :production do
   # gems specifically for Heroku go here
   gem "pg"
+  gem 'therubyracer', :platform => :ruby
 end
 
-gem 'therubyracer'
+gem 'therubyracer', :platform => :ruby
 
 gem 'sqlite3', :group => [:development, :test]
 
