@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   end
 
   def authenticate
-  	@user = User.find_by_username(params[:user][:username])
+  	@user = User.find_by_username(params[:username])
 
   	respond_to do |format|
     	if @user
