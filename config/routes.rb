@@ -17,6 +17,8 @@ TmbNapServ::Application.routes.draw do
 
   resources :users, :collection => { :register => :get}
 
+  resources :items, :collection => { :add => :get}
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

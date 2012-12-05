@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def register
-  	@user = User.new(params[:user])  	
+  	@user = User.new(params[:user])
    	respond_to do |format|
       begin       	
       	@user.save!
