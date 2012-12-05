@@ -30,7 +30,7 @@ class ItemsController < ApplicationController
     if @item.user == @user
       format.json { render :json => { :response => "Item saved!", :status => "OK"} }
     else
-      format.json { render :json => { :response => "Invalid user!", :status => "NOT OK"} }
+      format.json { render :json => { :response => "Error!", :status => "NOT OK"} }
     end
   end
 
