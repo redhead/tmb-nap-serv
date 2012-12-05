@@ -10,8 +10,6 @@ group :production do
   gem "pg"
 end
 
-gem 'therubyracer', :platform => :ruby
-
 gem 'sqlite3', :group => [:development, :test]
 
 
