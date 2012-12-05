@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
     respond_to do |format|
       begin         
         @item.save!
-        format.json { render :json => { :response => "Item saved!", :status => "OK"} }
+        format.json { render :json => { :response => "Item saved!", :status => "OK", :id => @item.id} }
       rescue ActiveRecord::RecordInvalid => e
         puts e.message
         format.json { render :json => { :response => e.message, :status => "NOT OK"} }
