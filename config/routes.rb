@@ -1,19 +1,11 @@
 TmbNapServ::Application.routes.draw do
   
-  get "items/find"
-
-  get "items/get"
-
-  get "items/add"
-
-  get "items/remove"
-
-  get "items/edit"
-
   root :to => "users#index"
 
   match '/users/register', :controller => 'users', :action => 'register'
   match '/users/authenticate', :controller => 'users', :action => 'authenticate'
+
+  match '/items/add', :controller => 'items', :action => 'add'
 
   resources :users, :collection => { :register => :get}
 
