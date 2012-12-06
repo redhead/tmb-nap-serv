@@ -72,9 +72,9 @@ class ItemsController < ApplicationController
   end
 
   def get_all_by_user
-    @item = Item.find_by_user_id(params[:id])
+    @items = Item.find_by_user_id(params[:id])
     respond_to do |format|
-        format.json { render :json => @item }
+        format.json { render :json => { items => @items } }
     end
   end
 end
