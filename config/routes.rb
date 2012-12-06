@@ -6,11 +6,13 @@ TmbNapServ::Application.routes.draw do
   match '/users/authenticate', :controller => 'users', :action => 'authenticate'
 
   match '/items/add', :controller => 'items', :action => 'add'
+  match '/items/edit', :controller => 'items', :action => 'edit'
+  match '/items/remove', :controller => 'items', :action => 'remove'
   match '/items/get', :controller => 'items', :action => 'get'
 
-  resources :users, :collection => { :register => :get}
+  resources :users, :collection => { :register => :get }
 
-  resources :items, :collection => { :add => :get}
+  resources :items, :collection => { :add => :get }
 
 
   # The priority is based upon order of creation:

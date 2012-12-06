@@ -42,7 +42,7 @@ class ItemsController < ApplicationController
         begin         
           @item.assign_attributes(params[:item])
           @item.save!
-          format.json { render :json => { :response => "Item updated!", :status => "OK"} }
+          format.json { render :json => { :response => "Item updated!", :status => "OK", :item => @item} }
         rescue ActiveRecord::RecordInvalid => e
           puts e.message
           format.json { render :json => { :response => e.message, :status => "NOT OK"} }
