@@ -63,7 +63,11 @@ class ItemsController < ApplicationController
   def get
     @item = Item.find(params[:id])
     respond_to do |format|
-        format.json { render :json => { :item => @item } }
+      if @item
+        format.json { render :json => { :response => "Item found!", :status => "OK", :item => @item } }
+      else
+        format.json { render :json => { :response => "Item not found", :status => "NOT OK"} }
+      end
     end
   end
 
