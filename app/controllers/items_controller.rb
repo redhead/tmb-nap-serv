@@ -63,7 +63,7 @@ class ItemsController < ApplicationController
   def get
     @item = Item.find(params[:id])
     respond_to do |format|
-        format.json { render :json => @item }
+        format.json { render :json => { :item => @item } }
     end
   end
 
