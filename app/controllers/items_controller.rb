@@ -7,7 +7,7 @@ class ItemsController < ApplicationController
     respond_to do |format|
       begin         
         @item.save!
-        format.json { render :json => { :response => "Item saved!", :status => "OK", :id => @item.id} }
+        format.json { render :json => { :response => "Item saved!", :status => "OK", :item => @item } }
       rescue ActiveRecord::RecordInvalid => e
         puts e.message
         format.json { render :json => { :response => e.message, :status => "NOT OK"} }
@@ -16,21 +16,40 @@ class ItemsController < ApplicationController
   end
 
   def remove
-    @item = Item.find(params[:id]);
-    @user = User.find(params[:user_id]);
-    if @item.user == @user
-      @item.delete
+    @item = Item.find(params[:id])
+    @user = User.find(params[:user_id])
+    
+    respond_to do |format|
+      if @item.user == @user
+          @item.destroy
+          if @item.destroyed?
+            format.json { render :json => { :response => "Item deleted!", :status => "OK" } }
+          else
+            format.json { render :json => { :response => "Could not delete item!", :status => "NOT OK" } }
+          end
+      else
+        format.json { render :json => { :response => "Invalid user, item not deleted!", :status => "NOT OK" } }
+      end
     end
   end
 
   def edit
-    @item = Item.find(params[:id]);
-    @user = User.find(params[:user_id]);
-    
-    if @item.user == @user
-      format.json { render :json => { :response => "Item saved!", :status => "OK"} }
-    else
-      format.json { render :json => { :response => "Error!", :status => "NOT OK"} }
+    @item = Item.find(params[:id])
+    @user = User.find(params[:user_id])
+
+    respond_to do |format|
+      if @item.user == @user
+        begin         
+          @item.assign_attributes(params[:item])
+          @item.save!
+          format.json { render :json => { :response => "Item updated!", :status => "OK"} }
+        rescue ActiveRecord::RecordInvalid => e
+          puts e.message
+          format.json { render :json => { :response => e.message, :status => "NOT OK"} }
+        end
+      else
+        format.json { render :json => { :response => "Invalid user, item not updated!", :status => "NOT OK"} }
+      end
     end
   end
 
