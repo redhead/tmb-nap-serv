@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   	respond_to do |format|
     	if @user and @user.password == params[:user][:password]
-    		format.json { render :json => { :response => "User authenticated", :status => "OK"} }
+    		format.json { render :json => { :response => "User authenticated", :status => "OK", :id => @user.id} }
     	else
     		format.json { render :json => { :response => "User not authenticated", :status => "NOT OK"} }
     	end
