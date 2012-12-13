@@ -10,6 +10,7 @@ TmbNapServ::Application.routes.draw do
   match '/items/remove', :controller => 'items', :action => 'remove'
   match '/items/get', :controller => 'items', :action => 'get'
   match '/items/get-all-by-user', :controller => 'items', :action => 'get_all_by_user'
+  match '/items/find', :controller => 'items', :action => 'find'
 
   resources :users, :collection => { :register => :get }
 

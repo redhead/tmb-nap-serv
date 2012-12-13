@@ -54,7 +54,8 @@ class ItemsController < ApplicationController
   end
 
   def find
-    @items = Item.find(params[:item])
+    query = params[:query]
+    @items = Item.find(:all, :conditions => ["title LIKE ?", "%#{query}%"])
     respond_to do |format|
         format.json { render :json => { :items => @items } }
     end
